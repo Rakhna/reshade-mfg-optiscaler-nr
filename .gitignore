@@ -1,0 +1,15 @@
+# Build / binary caches
+*.bak
+*.log
+*.tmp
+
+# Visual Studio / IDE
+.vs/
+*.user
+*.suo
+
+# OS generated
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
