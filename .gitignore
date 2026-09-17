@@ -13,3 +13,12 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
+
+# Agent & Graphify
+.agents/
+graphify-out/
+.graphify_*
+
+# Traceability
+traceability.md
+trace/
