@@ -55,23 +55,44 @@ Validado en **Cyberpunk 2077** sobre arquitecturas **NVIDIA GeForce RTX 40 Serie
 
 ---
 
-## 🛠️ Estructura del Repositorio
+## Repository Structure
 
 ```text
 reshade-mfg-optiscaler-nr/
-├── dist/                          # Paquete preconfigurado para producción
-│   ├── dxgi.dll                   # Proxy OptiScaler con DLSS-NR
-│   ├── OptiScaler.dll             # Núcleo OptiScaler
-│   ├── OptiScaler.ini             # Configuración preestablecida (F11, NR activo)
-│   ├── nvngx.dll_dlssnr.dll       # Forwarder de Neural Rendering
-│   ├── ReShade64.dll              # ReShade v6.8.0 con soporte de Addons
-│   ├── renodx-mfgunlock.addon64   # Addon de Multi-Frame Generation 4X
-│   ├── ReShade.ini                # Configuración preestablecida (F10)
-│   └── amd_fidelityfx_*.dll       # Librerías de soporte FSR / XeSS
-├── docs/                          # Documentación técnica y telemetría
-│   └── ARCHITECTURE.md            # Diagramas de flujo y arquitectura
-├── install.bat                    # Instalador por lotes automatizado
-├── install.ps1                    # Instalador en PowerShell
+├── components/                        # Modular component sources
+│   ├── optiscaler/                    # OptiScaler proxy, core, and DLSS-NR forwarder
+│   │   ├── dxgi.dll
+│   │   ├── OptiScaler.dll
+│   │   ├── OptiScaler.ini
+│   │   └── nvngx.dll_dlssnr.dll
+│   ├── reshade/                       # ReShade v6.8.0 and Multi-Frame Generation addon
+│   │   ├── ReShade64.dll
+│   │   ├── ReShade.ini
+│   │   └── renodx-mfgunlock.addon64
+│   └── backends/                      # Upscaler and Frame Generation support libraries
+│       ├── amd_fidelityfx_*.dll       # AMD FidelityFX / FSR 3.1 FG
+│       ├── libxess*.dll / libxell.dll # Intel XeSS and XeLL
+│       └── dlssg_to_fsr3_*.dll
+├── dist/                              # Assembled deployment package
+│   ├── dxgi.dll                       # Root game proxy
+│   ├── OptiScaler.dll
+│   ├── OptiScaler.ini
+│   ├── nvngx.dll_dlssnr.dll
+│   ├── ReShade64.dll
+│   ├── ReShade.ini
+│   ├── renodx-mfgunlock.addon64
+│   └── OptiScaler/                    # Canonical OptiDllPath directory for backends
+│       ├── amd_fidelityfx_*.dll
+│       └── libxess*.dll
+├── docs/                              # Technical architecture and guides
+│   └── ARCHITECTURE.md
+├── scripts/                           # Tooling and installers
+│   ├── build-dist.ps1                 # Assembles dist/ from components/
+│   ├── install.bat                    # Batch deployment wizard
+│   └── install.ps1                    # PowerShell deployment wizard
+├── install.bat                        # Root convenience launcher
+├── install.ps1                        # Root convenience launcher
 ├── .gitignore
 └── README.md
 ```
+
